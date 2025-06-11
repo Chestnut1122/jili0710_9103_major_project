@@ -140,7 +140,7 @@ function draw(){
     }
 
     fill(grid.color[0], grid.color[1], grid.color[2], grid.alpha);
-    strokeWeight(2);
+    noStroke();
     rect(grid.x + dx, grid.y + dy, w, h);
   }
 }
