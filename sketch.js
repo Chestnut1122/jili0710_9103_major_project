@@ -15,6 +15,7 @@ function setup() {
   drawComposition();
 
   //create three buttons
+  //normal button
   normalButton = createButton('NORMAL');
   normalButton.position(20, 20);
   normalButton.mousePressed(() => {
@@ -23,6 +24,7 @@ function setup() {
     bgMode = 'black';
   });
 
+  //small button
   smallButton = createButton('SMALL');
   smallButton.position(110, 20);
   smallButton.mousePressed(() => {
@@ -31,6 +33,7 @@ function setup() {
     bgMode = 'yellowNoise';
   });
 
+  //large button
   largeButton = createButton('LARGE');
   largeButton.position(190, 20);
   largeButton.mousePressed(() => {
@@ -122,7 +125,7 @@ function draw(){
 
   bgNoiseOffset += bgNoiseSpeed;
 
-  //The breathing grid
+  //breathing grids
   for(let grid of grids){
     let scaleFactor = noise(frameCount * noiseSpeed + grid.noiseOffset) * (scaleMax - scaleMin) + scaleMin;
     let w = grid.baseW * scaleFactor;
@@ -131,12 +134,13 @@ function draw(){
     let dx = (grid.baseW - w) / 2;
     let dy = (grid.baseH - h) / 2;
 
+    //random flash effect
     if(flashMode && frameCount % 30 == 0){
       grid.alpha = random([0, 255]);
     }
 
     fill(grid.color[0], grid.color[1], grid.color[2], grid.alpha);
-    noStroke();
+    strokeWeight(2);
     rect(grid.x + dx, grid.y + dy, w, h);
   }
 }
@@ -153,13 +157,14 @@ function colorsEqual(c1, c2) {
   return c1[0] === c2[0] && c1[1] === c2[1] && c1[2] === c2[2];
 }
 
+//keyboard interaction
 function keyPressed() {
   if(key === ' ') {
-    flashMode = !flashMode;
+    flashMode = !flashMode; //toggle flash
   }
   if(keyCode === RETURN || keyCode === ENTER ){
     for(let grid of grids){
-      grid.alpha = 255; 
+      grid.alpha = 255;  //restore opacity
     }
   }
 }
