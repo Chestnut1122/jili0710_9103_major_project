@@ -4,11 +4,36 @@ let bgNoiseOffset = 0;
 let bgNoiseSpeed = 0.01;
 let flashMode = false;
 
+let scaleMin = 0.8;
+let scaleMax = 1.0;
+
 //draw the static Mondrian-style composition
 //Remove the 'noloop()' function.
 function setup() {
   createCanvas(windowWidth, windowHeight); //canvas size
   drawComposition();
+
+  //create three buttons
+  normalButton = createButton('NORMAL');
+  normalButton.position(20, 20);
+  normalButton.mousePressed(() => {
+    scaleMin = 0.8;
+    scaleMax = 1.0;
+  });
+
+  smallButton = createButton('SMALL');
+  smallButton.position(110, 20);
+  smallButton.mousePressed(() => {
+    scaleMin = 0.4;
+    scaleMax = 0.6;
+  });
+
+  largeButton = createButton('LARGE');
+  largeButton.position(190, 20);
+  largeButton.mousePressed(() => {
+    scaleMin = 0.8;
+    scaleMax = 1.2;
+  });
 }
 
 //main drawing function
@@ -88,7 +113,7 @@ function draw(){
 
   //The breathing grid
   for(let grid of grids){
-    let scaleFactor = noise(frameCount * noiseSpeed + grid.noiseOffset) * 0.2 + 0.8;
+    let scaleFactor = noise(frameCount * noiseSpeed + grid.noiseOffset) * (scaleMax - scaleMin) + scaleMin;
     let w = grid.baseW * scaleFactor;
     let h = grid.baseH * scaleFactor;
 
@@ -96,7 +121,7 @@ function draw(){
     let dy = (grid.baseH - h) / 2;
 
     if(flashMode && frameCount % 20 == 0){
-      grid.alpha = random([100, 255]);
+      grid.alpha = random([0, 200]);
     }
 
     fill(grid.color[0], grid.color[1], grid.color[2], grid.alpha);
