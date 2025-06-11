@@ -3,6 +3,7 @@ let noiseSpeed = 0.2;
 let bgNoiseOffset = 0;
 let bgNoiseSpeed = 0.01;
 let flashMode = false;
+let bgMode = 'yellowNoise';
 
 let scaleMin = 0.8;
 let scaleMax = 1.0;
@@ -19,6 +20,7 @@ function setup() {
   normalButton.mousePressed(() => {
     scaleMin = 0.8;
     scaleMax = 1.0;
+    bgMode = 'black';
   });
 
   smallButton = createButton('SMALL');
@@ -26,6 +28,7 @@ function setup() {
   smallButton.mousePressed(() => {
     scaleMin = 0.4;
     scaleMax = 0.6;
+    bgMode = 'yellowNoise';
   });
 
   largeButton = createButton('LARGE');
@@ -33,6 +36,7 @@ function setup() {
   largeButton.mousePressed(() => {
     scaleMin = 0.8;
     scaleMax = 1.2;
+    bgMode = 'white';
   });
 }
 
@@ -107,9 +111,16 @@ function draw(){
   //noise background colour
   let n = noise(bgNoiseOffset);
   let g = n * 255;
-  background(255, 230, g);
 
-  bgNoiseOffset +=bgNoiseSpeed;
+  if(bgMode === 'yellowNoise'){
+    background(255, 230, g);
+  } else if (bgMode === 'black'){
+    background(0);
+  } else if (bgMode === 'white'){
+    background(255);
+  }
+
+  bgNoiseOffset += bgNoiseSpeed;
 
   //The breathing grid
   for(let grid of grids){
@@ -120,8 +131,8 @@ function draw(){
     let dx = (grid.baseW - w) / 2;
     let dy = (grid.baseH - h) / 2;
 
-    if(flashMode && frameCount % 20 == 0){
-      grid.alpha = random([0, 200]);
+    if(flashMode && frameCount % 30 == 0){
+      grid.alpha = random([0, 255]);
     }
 
     fill(grid.color[0], grid.color[1], grid.color[2], grid.alpha);
