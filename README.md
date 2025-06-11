@@ -28,11 +28,11 @@ My section makes each block "breathe" using a smooth Perlin noise-driven scaling
 
 I drew inspiration from various phases of Piet Mondrian's artistic evolution:
 - The `SMALL` button mode reflects his famous **"Broadway Boogie Woogie"**
-![](assets/Piet_Mondrian\ Broadway_Boogie_Woogie.jpeg)
+![](assets/broadway_boogie_woogie.jpeg)
 - The `NORMAL` mode references **"Composition with Red, Yellow and Blue"**
-![](assets/Piet_Mondrian\ Red_Yellow_Blue\ .jpg)
+![](assets/red_yellow_blue.jpg)
 - The `LARGE` mode draws from his early geometric work **"Composition with Colour Planes and Gray Lines 1" (1917)**
-![](assets/Composition\ with\ Colour\ Planes\ and\ Gray\ Lines\ 1\ 1917.jpg)
+![](assets/composition_gray_lines.jpg)
 
 ---
 
