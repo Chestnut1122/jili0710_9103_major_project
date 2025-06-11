@@ -2,6 +2,7 @@ let grids =[];
 let noiseSpeed = 0.2;
 let bgNoiseOffset = 0;
 let bgNoiseSpeed = 0.01;
+let flashMode = false;
 
 //draw the static Mondrian-style composition
 //Remove the 'noloop()' function.
@@ -81,7 +82,7 @@ function draw(){
   //noise background colour
   let n = noise(bgNoiseOffset);
   let g = n * 255;
-  background(g, g, g);
+  background(255, 230, g);
 
   bgNoiseOffset +=bgNoiseSpeed;
 
@@ -94,7 +95,11 @@ function draw(){
     let dx = (grid.baseW - w) / 2;
     let dy = (grid.baseH - h) / 2;
 
-    fill(grid.color[0], grid.color[1], grid.color[2]);
+    if(flashMode && frameCount % 20 == 0){
+      grid.alpha = random([100, 255]);
+    }
+
+    fill(grid.color[0], grid.color[1], grid.color[2], grid.alpha);
     noStroke();
     rect(grid.x + dx, grid.y + dy, w, h);
   }
@@ -110,6 +115,17 @@ function windowResized() {
 //check whether two colors are the same
 function colorsEqual(c1, c2) {
   return c1[0] === c2[0] && c1[1] === c2[1] && c1[2] === c2[2];
+}
+
+function keyPressed() {
+  if(key === ' ') {
+    flashMode = !flashMode;
+  }
+  if(keyCode === RETURN || keyCode === ENTER ){
+    for(let grid of grids){
+      grid.alpha = 255; 
+    }
+  }
 }
 
 
