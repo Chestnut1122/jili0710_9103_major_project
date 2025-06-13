@@ -57,5 +57,5 @@ I drew inspiration from various phases of Piet Mondrian's artistic evolution:
 
 ## Use of External Techniques
 
-I used the `while()` loop structure for grid generation, which I discovered while exploring examples on the official p5.js website. (https://p5js.org/reference/p5/while/) ChatGPT later recommended adapting it into my composition logic. This is because each row contains rectangles of random widths, making it impossible to predetermine the number of blocks. Compared to a `for()` loop, a `while()` loop is more flexible for filling the canvas dynamically with irregular layouts.
+I used the `while()` loop structure for grid generation, which I discovered while exploring examples on the official p5.js website (https://p5js.org/reference/p5/while/). ChatGPT later recommended adapting it into my composition logic. This is because each row contains rectangles of random widths, making it impossible to predetermine the number of blocks. Compared to a `for()` loop, a `while()` loop is more flexible for filling the canvas dynamically with irregular layouts.
 
